@@ -1,0 +1,14 @@
+input[type="text"]{
+    width: 15%;
+    padding: 0.2em;
+    font-size: 0.9em;
+    
+    color: #fff;
+    background-color: rgba(18, 18, 18,0.1);
+    border: 2px solid #fff;
+    border-radius: 10px;
+
+    font-family: 'Roboto Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

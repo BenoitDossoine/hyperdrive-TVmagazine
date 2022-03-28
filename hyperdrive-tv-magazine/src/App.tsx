@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import './ShowList.css';
 import './Show.css';
+import './FilterDiv.css'
 
 
 interface Props {
@@ -12,14 +13,40 @@ interface Props {
 function App() {
   return (
     <>
+      <FilterDiv />
       <ShowList />
     </>
   );
 }
 
+function FilterDiv(){
+  return(
+    <div className="filterContainer">
+      <Search/>
+      <Filter/>
+    </div>
+  )
+}
 
+function Search(){
+  return(
+    <input type="text" placeholder="Search" />
+  );
+}
+
+function Filter(){
+  return(
+    <select name="filter" id="filter">
+      <option value="time">Start time</option>
+      <option value="length">Duration</option>
+      <option value="alphabet">A-Z</option>
+    </select>
+  )
+}
 
 function ShowList(){
+
+  
   const shows = [
     {
       "id": 2291523,
@@ -75,7 +102,7 @@ function Show(props:Props){
       <h2 className="showName">{props.show.show.name}</h2>
       <p className="showType">{props.show.show.type}</p>
       <p className="airtime">{props.show.airtime}</p>
-      <p className="showDescription">{props.show.show.summary}</p>
+      <div className="showDescription" dangerouslySetInnerHTML={{ __html: props.show.show.summary}}></div>
     </div>
   </div>);
 }
