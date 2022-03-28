@@ -2,12 +2,28 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './ShowList.css';
-import './Show.css';
+import './ShowTile.css';
 import './FilterDiv.css'
 
 
 interface Props {
-  show: any,
+  show: Show,
+}
+
+interface Show{
+    id: number,
+    name:string,
+    show:{
+      image: {
+        medium: string,
+      },
+      medium: string,
+      name:string,
+      summary: string,
+      type: string
+    },
+    airtime: string,
+
 }
 
 function App() {
@@ -46,56 +62,74 @@ function Filter(){
 
 function ShowList(){
 
-  
-  const shows = [
-    {
-      "id": 2291523,
-      "url": "https://www.tvmaze.com/episodes/2291523/gigantosaurus-3x31-mystery-hunters",
-      "name": "Mystery Hunters",
-      "season": 3,
-      "number": 31,
-      "airdate": "2022-03-28",
-      "airtime": "09:00",
-      "airstamp": "2022-03-28T13:00:00+00:00",
-      "runtime": 30,
-      "show": {
-        "id": 40689,
-        "url": "https://www.tvmaze.com/shows/40689/gigantosaurus",
-        "name": "Gigantosaurus",
-        "type": "Animation",
-        "language": "English",
-        "genres": [
-          "Adventure",
-          "Children",
-          "Fantasy"
-        ],
-        "schedule": {
-          "time": "09:00",
-          "days": [
-            "Friday"
-          ]
-        },
-        "image": {
-          "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/181/454793.jpg",
-          "original": "https://static.tvmaze.com/uploads/images/original_untouched/181/454793.jpg"
-        },
-        "summary": "<p>Four little dinos and one BIG Gigantosaurus… learn to dare! Rocky, Bill, Tiny, and Mazu are four young dinosaurs growing up in the Cretaceous period. Life is always an adventure: new volcanoes are popping up all the time, long-necked brachiosauruses and enormous triceratopses roam free, meteor showers light up the night sky and… the big bad Gigantosaurus reigns over it all!</p><p>The mere mention of Gigantosaurus's name is enough to stir a range of conflicting emotions in the four young dinos: fear (Bill), fascination (Rocky), laughter (Tiny), and scientific interest (Mazu). Through the adventures of the young dino heroes, <b>Gigantosaurus</b> reflects the different ways 4-6-year-old children discover the world… and themselves.</p>",
-      },
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [data, setData] = React.useState<Show[]>([]);
 
+  React.useEffect(()=>{
+    const url = "https://api.tvmaze.com/schedule";
+    fetch(url)
+      .then(response => response.json())
+      .then(json=> setData(json))
+      .catch(error => console.log(error));
+  }, []);
+
+  React.useEffect(()=>{
+    if(data.length !== 0){
+      setIsLoading(false);
     }
-  ];
+  }, [data]);
+
+  const shows = data;
+  // [
+  //   {
+  //     "id": 2291523,
+  //     "url": "https://www.tvmaze.com/episodes/2291523/gigantosaurus-3x31-mystery-hunters",
+  //     "name": "Mystery Hunters",
+  //     "season": 3,
+  //     "number": 31,
+  //     "airdate": "2022-03-28",
+  //     "airtime": "09:00",
+  //     "airstamp": "2022-03-28T13:00:00+00:00",
+  //     "runtime": 30,
+  //     "show": {
+  //       "id": 40689,
+  //       "url": "https://www.tvmaze.com/shows/40689/gigantosaurus",
+  //       "name": "Gigantosaurus",
+  //       "type": "Animation",
+  //       "language": "English",
+  //       "genres": [
+  //         "Adventure",
+  //         "Children",
+  //         "Fantasy"
+  //       ],
+  //       "schedule": {
+  //         "time": "09:00",
+  //         "days": [
+  //           "Friday"
+  //         ]
+  //       },
+  //       "image": {
+  //         "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/181/454793.jpg",
+  //         "original": "https://static.tvmaze.com/uploads/images/original_untouched/181/454793.jpg"
+  //       },
+  //       "summary": "<p>Four little dinos and one BIG Gigantosaurus… learn to dare! Rocky, Bill, Tiny, and Mazu are four young dinosaurs growing up in the Cretaceous period. Life is always an adventure: new volcanoes are popping up all the time, long-necked brachiosauruses and enormous triceratopses roam free, meteor showers light up the night sky and… the big bad Gigantosaurus reigns over it all!</p><p>The mere mention of Gigantosaurus's name is enough to stir a range of conflicting emotions in the four young dinos: fear (Bill), fascination (Rocky), laughter (Tiny), and scientific interest (Mazu). Through the adventures of the young dino heroes, <b>Gigantosaurus</b> reflects the different ways 4-6-year-old children discover the world… and themselves.</p>",
+  //     },
+
+  //   }
+  // ];
 
   return(
     <div>
-      {shows.map((show)=>(
-        <Show key={show.id} show={show}/>
-        ))}
+      {shows.map((show)=>
+        <ShowTile show={show}/>
+      )}
     </div>
   );
 }
 
-function Show(props:Props){
-  return (<div className="showContainer">
+function ShowTile(props:Props){
+  return (
+    <div className="showContainer">
     <img src={props.show.show.image.medium} alt="" className="showImg" />
     <div className="showInfo">
       <h1 className="episodeTitle">{props.show.name}</h1>
