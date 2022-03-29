@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './index.css'
 import { showService } from './services/ShowService';
+import { useLoading } from './hooks/Loading';
 
 interface Props {
   show: Show,
@@ -60,18 +61,15 @@ function Filter(){
 function ShowList(){
 
   const [shows, setShows] = React.useState<Show[]>([]);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const isLoading = useLoading(shows);
 
   React.useEffect(()=>{
-    setIsLoading(true);
     showService.getAllShows()
       .then((response)=>{
         setShows(response);
-
-        setIsLoading(false);
       })
-  }, []);
-
+    }, []);
+    
   return(
     <div>
       {shows.map((show)=>{
