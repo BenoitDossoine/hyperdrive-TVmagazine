@@ -1,13 +1,17 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import DetailPage from './Detailpage';
+import Homepage from './Homepage';
 
-import { FilterDiv } from './FilterDiv';
-import { ShowList } from './ShowList';
 
 function App() {
   return (
     <>
-      <FilterDiv />
-      <ShowList />
+      <Routes>
+        <Route path="/" element={<Homepage/>}></Route>
+        <Route path="/show/:showId/:season/:episodeNumber" element={<DetailPage/>}></Route>
+      </Routes>
+      
     </>
   );
 }

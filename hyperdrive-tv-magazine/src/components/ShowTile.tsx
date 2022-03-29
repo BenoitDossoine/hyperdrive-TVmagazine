@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Props from "../interfaces/Props";
 
 function ShowTile(props:Props){
@@ -10,6 +11,9 @@ function ShowTile(props:Props){
         <p className="showType">{props.show.show.type}</p>
         <p className="airtime">{props.show.airtime}</p>
         <div className="showDescription" dangerouslySetInnerHTML={{ __html: props.show.show.summary}}></div>
+        <button className="episodeBtn">
+          <Link className="episodeLink" to={`/show/${props.show.show.id}/${props.show.season}/${props.show.number}`}>More info</Link>
+        </button>
       </div>
     </div>);
 }

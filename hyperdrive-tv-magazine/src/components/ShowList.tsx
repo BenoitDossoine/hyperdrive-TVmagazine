@@ -4,6 +4,7 @@ import { useLoading } from '../hooks/Loading.hooks';
 import ShowTile from "./ShowTile";
 import Show from "../interfaces/Show";
 
+
 function ShowList(){
 
     const [shows, setShows] = React.useState<Show[]>([]);
@@ -16,7 +17,7 @@ function ShowList(){
       }, []);
       
     return(
-        <div>{
+        <div className="showList">{
             isLoading ? 
             <p>Loading shows...</p> :
             <div>
