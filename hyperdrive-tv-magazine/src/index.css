@@ -1,22 +1,13 @@
+@import './styles/main.scss';
 @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
 
 body {
-  margin: 0;
+  margin: 0 var(spacer_right) 0 var(spacer_left);
   font-family: 'Roboto Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   background-color: #121212;
   color: white;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.airtime{
-  font-family: 'Oxanium', cursive;
-  font-size: 50px;
 }

@@ -5,6 +5,8 @@
     background-color: rgba(255,255,255, 0.1);
 
     border-radius: 10px;
+
+    margin-bottom: 20px;
 }
 
 img{
@@ -38,12 +40,18 @@ img{
 
 .airtime{
     position: absolute;
-    margin: 0;
     right: 5%;
     top: 21px;
+
+    font-family: 'Oxanium', cursive;
+    font-size: 50px;
 }
 
 .showDescription{
     font-size: 20px;
+
+    max-height: 250px;
+    padding-right: 20px;
+    overflow-y: scroll;
 }
 
