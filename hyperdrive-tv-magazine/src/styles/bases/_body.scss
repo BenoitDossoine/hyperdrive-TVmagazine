@@ -1,10 +1,9 @@
-@import './styles/main.scss';
 @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
 
 body {
-  margin: 0 var(spacer_right) 0 var(spacer_left);
-  font-family: 'Roboto Mono', monospace;
+  margin: 0  $spacer_right 0 $spacer_left;
+  font-family: $font_family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 

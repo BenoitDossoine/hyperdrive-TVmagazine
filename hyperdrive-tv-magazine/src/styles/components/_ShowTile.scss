@@ -55,3 +55,24 @@ img{
     overflow-y: scroll;
 }
 
+.episodeBtn{
+    border: 2px solid #fff;
+    margin-top: 25px;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    background-color: #2a2a2a;
+
+    &:hover{
+        background-color: #fff;
+    }
+    &:hover>.episodeLink{
+        background-color: #fff;
+        color: #2a2a2a;
+    }
+}
+
+.episodeLink{
+    text-decoration: none;
+    color: white;
+    font-family: $font_family;
+}
