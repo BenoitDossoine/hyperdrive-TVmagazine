@@ -1,0 +1,20 @@
+.episodeDiv{
+    display: flex;
+    flex-direction: row;
+
+    background-color: rgba(255,255,255, 0.1);
+
+    border-radius: 10px;
+
+    margin: 50px 0;
+}
+
+.episodeDiv .airtime{
+    position: inherit;
+    padding: 0 5%;
+    margin: 0;
+}
+
+.episodeRating{
+    margin-top: 50px;
+}

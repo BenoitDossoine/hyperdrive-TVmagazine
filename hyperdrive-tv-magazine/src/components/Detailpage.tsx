@@ -1,8 +1,10 @@
+
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useLoading } from "../hooks/Loading.hooks";
 import Episode from "../interfaces/Episode";
 import { showService } from "../services/ShowService";
+import calculateEndTime from "../utils/endTimeCalc";
 
 function DetailPage(){
 
@@ -17,15 +19,26 @@ function DetailPage(){
         }
     }, [showId,season,episodeNumber]);
 
+
     if(episode) {
+        calculateEndTime(episode.airtime,episode.runtime);
         return(
             <div className="episodeDiv">
-                <img src={episode.image} alt="" className="showImg" />
+                {episode.image?
+                <img src={episode.image} alt={`${episode.name}`} className="showImg" />:
+                <img src="https://picsum.photos/430/600" alt="placeholderImg" className="showImg" />
+                }
                 <div className="showInfo">
                     <h1 className="episodeTitle">{episode.name}</h1>
-                    <h2 className="showName">{episode.name}</h2>   
-                    <p className="airtime">{episode.airtime}</p>
-                    <div className="showDescription" dangerouslySetInnerHTML={{ __html: episode.summary}}></div>  
+                    <p className="episodeInfo">Season {episode.season} - Episode {episode.number}</p>
+                    <div className="showDescription" dangerouslySetInnerHTML={{ __html: episode.summary}}></div>
+                    <p className="airtime">{episode.airtime} - {calculateEndTime(episode.airtime,episode.runtime)}</p>
+                    <div className="episodeRating">
+                        {episode.rating.average?
+                            <p>{episode.rating.average}/5</p>:
+                            <p>Not yet rated</p>
+                        }
+                    </div>  
                 </div>
             </div>
         );
