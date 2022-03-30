@@ -29,15 +29,6 @@ function ShowList(){
       }
     }, [dispatch]);
 
-    // const [shows, setShows] = React.useState<Show[]>([]);
-    // const isLoading = useLoading(shows);
-    // React.useEffect(()=>{
-    //   showService.getAllShows()
-    //     .then((response)=>{
-    //       setShows(response);
-    //     })
-    //   }, []);
-
     const renderShowList = (shows:Show[])=>{
       return shows.map((show)=>{
         return (<ShowTile key={show.id} show={show}/>);
@@ -46,8 +37,6 @@ function ShowList(){
       
     return(
         <div className="showList">{
-            // isLoading ? 
-            // <p>Loading shows...</p> :
             <div>
               {renderShowList(showList)}
             </div> 
