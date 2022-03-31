@@ -4,7 +4,7 @@ import Props from "../interfaces/Props";
 function ShowTile(props:Props){
     return (
       <div className="showContainer">
-      <img src={props.show.show.image.medium} alt="" className="showImg" />
+        {props.show.show.image?.medium && <img src={props.show.show.image.medium} alt="" className="showImg" />}
       <div className="showInfo">
         <h1 className="episodeTitle">{props.show.name}</h1>
         <h2 className="showName">{props.show.show.name}</h2>

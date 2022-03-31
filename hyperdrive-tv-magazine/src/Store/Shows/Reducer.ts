@@ -22,5 +22,6 @@ export const ShowListReducer = createReducer<ShowListState>(
                 list: action.payload,
             };
         });
+
     }
 );

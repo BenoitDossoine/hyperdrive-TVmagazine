@@ -3,6 +3,7 @@ interface Show{
     name:string,
     season: number,
     number: number,
+    runtime: number,
     show:{
       id:number,
       image: {

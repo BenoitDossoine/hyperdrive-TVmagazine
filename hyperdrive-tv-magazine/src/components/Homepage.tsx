@@ -3,10 +3,10 @@ import { ShowList } from './ShowList';
 
 function Homepage(){
     return(
-        <>
+        <div className="homepage">
         <FilterDiv />
         <ShowList />
-        </>
+        </div>
     )
 }
 

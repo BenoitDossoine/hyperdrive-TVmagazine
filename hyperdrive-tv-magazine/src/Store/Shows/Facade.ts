@@ -9,6 +9,7 @@ export const fetchShowList = (shows: Show[]) => {
                 name: result.name,
                 season: result.season,
                 number: result.number,
+                runtime: result.runtime,
                 show: {
                     id: result.show.number,
                     image: {

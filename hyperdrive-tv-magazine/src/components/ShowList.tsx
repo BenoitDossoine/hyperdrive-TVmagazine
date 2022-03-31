@@ -5,15 +5,25 @@ import ShowTile from "./ShowTile";
 import Show from "../interfaces/Show";
 import { useDispatch, useSelector } from "react-redux";
 import { ShowListState } from "../Store/Shows/InitialState";
-import { selectShowList, selectShowListError } from "../Store/Shows/Selectors";
+import { selectFilteredShowList, selectShowList, selectShowListError } from "../Store/Shows/Selectors";
 import { StoreState } from "../Store/store.types";
-import { fetchShowList, fetchShowListSuccess } from "../Store/Shows/Actions";
+import { fetchShowList, fetchShowListSuccess, filterList } from "../Store/Shows/Actions";
+import { useSearchParams } from "react-router-dom";
+import Filter from "../interfaces/Filter";
 
 
 function ShowList(){
     
+    let [searchParams, setSearchParams] = useSearchParams();
+    let search = searchParams.get("search");
+    let filter = searchParams.get("filter");
+  
     const showList = useSelector<StoreState, Show[]>(
       selectShowList
+    );
+
+    const filteredShowList = useSelector<StoreState, Show[]>(
+      (state)=>selectFilteredShowList(state,{search,filter})
     );
 
     const error = useSelector<StoreState, string>(
@@ -36,11 +46,13 @@ function ShowList(){
     };
       
     return(
-        <div className="showList">{
+        <div className="showList">
             <div>
-              {renderShowList(showList)}
+              {(search || filter)?
+              renderShowList(filteredShowList):     
+              renderShowList(showList)}
             </div> 
-        }</div>
+        </div>
     );
 }
 
