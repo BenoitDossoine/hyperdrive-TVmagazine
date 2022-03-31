@@ -1,9 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useLoading } from "../hooks/Loading.hooks";
 import Episode from "../interfaces/Episode";
 import { showService } from "../services/ShowService";
 import calculateEndTime from "../utils/endTimeCalc";
+import BackButton from "./BackButton";
 
 function DetailPage(){
 
@@ -18,6 +19,7 @@ function DetailPage(){
         }
     }, [showId,season,episodeNumber]);
 
+    const navigate = useNavigate();
 
     if(episode) {
         calculateEndTime(episode.airtime,episode.runtime);
@@ -38,6 +40,7 @@ function DetailPage(){
                             <p>Not yet rated</p>
                         }
                     </div>  
+                    <BackButton/>
                 </div>
             </div>
         );
