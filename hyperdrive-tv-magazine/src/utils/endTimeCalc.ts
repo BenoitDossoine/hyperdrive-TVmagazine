@@ -20,8 +20,12 @@ function setTimeStyling(hours:number, minutes:number){
         hours = 0;
     }
 
-    const hoursString = hours.toString();
-    const minutesString = minutes.toString();
+    let hoursString = hours.toString();
+    let minutesString = minutes.toString();
+
+    if(minutesString=="0"){
+        minutesString = "00";
+    }
 
     return `${hoursString}:${minutesString}`;
 }
