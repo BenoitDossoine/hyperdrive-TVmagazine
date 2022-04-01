@@ -90,12 +90,11 @@ img.showImg{
     color: #fff;
 
     &:hover{
-        background-color: #fff;
-        color: #2a2a2a;
-    }
-    &:hover>.episodeLink{
-        background-color: #fff;
-        color: #2a2a2a;
+        box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #fff,
+              0 0 0.8rem #fff,
+              inset 0 0 1.3rem #fff;
     }
     
     margin-top: auto;
