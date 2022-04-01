@@ -16,7 +16,7 @@ function Search(){
 
   return(
     <form className="searchForm" onSubmit={addSearchQuery}>
-      <input name="search" type="text" placeholder="Search" />
+      <input name="search" type="text" placeholder="Search" autoComplete="off" />
     </form>
   );
 }
