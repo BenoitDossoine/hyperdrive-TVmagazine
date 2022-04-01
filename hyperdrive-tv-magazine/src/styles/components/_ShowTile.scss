@@ -47,8 +47,9 @@ img.showImg{
     display: inline-block;
     padding: 0.5em;
     border-radius: 10px;
-    background-color: #fe2525;
-    border: #fe2525 solid 1px;
+    // background-color: #fe2525;
+    
+        
     align-self: flex-start;
     @media screen and (max-width: 1500px) {
        display: none;
@@ -63,7 +64,8 @@ img.showImg{
 
 .showDescription{
     font-size: 20px;
-    max-height: 250px;
+    max-height: 270px;
+    margin-top: 20px;
     padding-right: 20px;
     overflow-y: auto;
 
@@ -74,7 +76,7 @@ img.showImg{
         max-height: 180px;
     }
     @media screen and (max-width: 1500px) {
-        max-height: 150px;
+        max-height: 120px;
     }
 }
 
