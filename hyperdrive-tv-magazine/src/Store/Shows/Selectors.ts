@@ -24,15 +24,16 @@ export const selectFilteredShowList = createSelector(
     [(store:StoreState) => store.showList.list,
     (state,searchParameters:Filter)=>searchParameters],
     (list,searchParameters) => {
-        let filteredList = list;
-        const searchOptions = {
-            includeScore: true,
-            keys: ['name', 'show.name']
+        let filteredList = [...list];
+        if(searchParameters.search){
+            const searchOptions = {
+                includeScore: true,
+                keys: ['name', 'show.name']
+            }
+            const fuse = new Fuse(filteredList,searchOptions);
+            const result = fuse.search(searchParameters.search ?? "");
+            filteredList = result.map(result => result.item);
         }
-
-        const fuse = new Fuse(filteredList,searchOptions);
-        const result = fuse.search(searchParameters.search ?? "");
-        filteredList = result.map(result => result.item);
 
             
         if(searchParameters.filter){
