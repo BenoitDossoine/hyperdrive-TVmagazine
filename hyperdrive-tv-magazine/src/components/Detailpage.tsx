@@ -23,11 +23,11 @@ function DetailPage(){
 
     if(episode) {
         calculateEndTime(episode.airtime,episode.runtime);
-        return(
-            <div className="episodeDiv">
+            return(
+                <div className="episodeDiv">
                 {episode.image?
-                <img src={episode.image} alt={`${episode.name}`} className="showImg" />:
-                <img src="https://picsum.photos/430/600" alt="placeholderImg" className="showImg" />
+                    <img src={episode.image} alt={`${episode.name}`} className="showImg" />:
+                <img src={require('../assets/noImage.svg').default} alt="placeholderImg" className="showImg" />
                 }
                 <div className="showInfo">
                     <h1 className="episodeTitle">{episode.name}</h1>
@@ -41,15 +41,15 @@ function DetailPage(){
                         }
                     </div>  
                     <BackButton/>
+                    </div>
+                    </div>
+                    );
+        } else {
+            return (
+                <div className="episodeDiv">
+                    <p>Not found</p>
                 </div>
-            </div>
-        );
-    } else {
-        return (
-            <div className="episodeDiv">
-                <p>Not found</p>
-            </div>
-        )
+            )
     }
 }
 
