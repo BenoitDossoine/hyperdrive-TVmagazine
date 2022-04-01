@@ -3,6 +3,7 @@ import { ShowListState } from './InitialState';
 import { StoreState } from './../store.types';
 import { createSelector } from '@reduxjs/toolkit';
 import Filter from '../../interfaces/Filter';
+import Fuse from 'fuse.js';
 
 export const showListStateSelector = (
     state: StoreState
@@ -24,7 +25,15 @@ export const selectFilteredShowList = createSelector(
     (state,searchParameters:Filter)=>searchParameters],
     (list,searchParameters) => {
         let filteredList = list;
-        filteredList = filteredList.filter(show => show.name.startsWith(searchParameters.search ?? ""));
+        const searchOptions = {
+            includeScore: true,
+            keys: ['name', 'show.name']
+        }
+
+        const fuse = new Fuse(filteredList,searchOptions);
+        const result = fuse.search(searchParameters.search ?? "");
+        filteredList = result.map(result => result.item);
+
             
         if(searchParameters.filter){
             if(searchParameters.filter == 'alphabet'){
